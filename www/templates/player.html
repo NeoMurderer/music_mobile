@@ -1,0 +1,17 @@
+<ion-view view-title="Player">
+  <ion-content>
+        <h4 class="text-center padding">Current Playing</h4>
+    <div class="button-bar">
+      <button class="button icon ion-ios-rewind" ng-click="send('prevTrack')"></button>
+      <button class="button icon ion-play" ng-click="send('play')"></button>
+      <button class="button icon ion-pause" ng-click="send('pause')"></button>
+      <button class="button icon ion-ios-fastforward" ng-click="send('nextTrack')"></button>
+      <button class="button icon ion-android-volume-off" ng-click="send('mute')"></button>
+    </div>
+    <div class="item range">
+    <i class="icon ion-volume-low"></i>
+    <input type="range" name="volume" ng-model="volume" ng-change="changeVolume()"  min="0" max="100" value="60" ng-model-options="{debounce:500}">
+    <i class="icon ion-volume-high"></i>
+  </div>
+  </ion-content>
+</ion-view>
