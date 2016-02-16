@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,localStorageService) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -27,12 +27,13 @@ angular.module('starter.controllers', [])
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
+    $scope.loginData = localStorageService.get("loginData")
   };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
-
+    localStorageService.set("loginData",$scope.loginData)
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
@@ -41,20 +42,19 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlayerCtrl', function($scope,$http) {
+.controller('PlayerCtrl', function($scope,$http,localStorageService) {
   $scope.send = function (event) {
-    $http.post('http://localhost:3000/fire',
+    var user_session = localStorageService.get("loginData")
+    $http.post('http://'+user_session.ip+'/fire',
     {
-      user_session:{
-        email:"test@local.host",
-        password:"test"
-      },
+      user_session:user_session,
       user_action:event
     })
   }
   $scope.changeVolume = function () {
     var volume = this.volume
-    $http.post('http://localhost:3000/fire',
+    var user_session = localStorageService.get("loginData")
+    $http.post('http://'+user_session.ip+'/fire',
     {
       user_session:{
         email:"test@local.host",
