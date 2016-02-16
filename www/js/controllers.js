@@ -27,13 +27,17 @@ angular.module('starter.controllers', [])
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
-    $scope.loginData = localStorageService.get("loginData")
+    var loginData = localStorageService.get("loginData")
+    if(loginData)
+      $scope.loginData = loginData
   };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
     localStorageService.set("loginData",$scope.loginData)
+    console.log(localStorageService.get("loginData"));
+    console.log($scope.loginData);
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
@@ -51,6 +55,16 @@ angular.module('starter.controllers', [])
       user_action:event
     })
   }
+  $scope.getState = function () {
+    var user_session = localStorageService.get("loginData")
+    console.log(user_session);
+    $http({
+      url:'http://'+user_session.ip+'/get_state',
+      method: "POST",
+      data: {  user_session:user_session}
+   });
+  }
+  $scope.getState();
   $scope.changeVolume = function () {
     var volume = this.volume
     var user_session = localStorageService.get("loginData")
