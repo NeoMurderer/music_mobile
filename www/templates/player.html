@@ -1,6 +1,21 @@
-<ion-view view-title="Player">
-  <ion-content>
-        <h4 class="text-center padding">Current Playing</h4>
+<ion-modal-view >
+  <ion-header-bar class="player-footer">
+      <div class="list full-width" on-swipe-down="modal.hide()">
+        <div class="item item-avatar item-icon-right" href="#">
+          <img src="http://api.redpanda.cloudit-dev.com//uploads/tracks/2G/img.jpg" alt="" />
+          <h2>Venkman</h2>
+          <p>Back off, man. I'm a scientist.</p>
+          <div class="buttons">
+            <button class="button  icon ion-android-close " ng-click="modal.hide()"></button>
+          </div>
+        </div>
+      </div>
+
+  </ion-header-bar>
+  <ion-content style="background-image:url('https://lh3.googleusercontent.com/HKInykbyHppYPEHbF4ClT6cPVbbnQjfhLkSLyhFq7ibwO-WNBfRHBI3Rx-jLKVOPJzFNrMUQ=s512-c-e100-nu')" class="player-background">
+  </ion-content>
+  <ion-footer-bar align-title="left" class="player-footer">
+
     <div class="button-bar">
       <button class="button icon ion-ios-rewind" ng-click="send('prevTrack')"></button>
       <button class="button icon ion-play" ng-click="send('play')"></button>
@@ -8,10 +23,10 @@
       <button class="button icon ion-ios-fastforward" ng-click="send('nextTrack')"></button>
       <button class="button icon ion-android-volume-off" ng-click="send('mute')"></button>
     </div>
-    <div class="item range">
-    <i class="icon ion-volume-low"></i>
-    <input type="range" name="volume" ng-model="volume" ng-change="changeVolume()"  min="0" max="100" value="60" ng-model-options="{debounce:500}">
-    <i class="icon ion-volume-high"></i>
-  </div>
-  </ion-content>
-</ion-view>
+  </ion-footer-bar>>
+</ion-modal-view>>
+<!-- <div class="item range">
+<i class="icon ion-volume-low"></i>
+<input type="range" name="volume" ng-model="volume" ng-change="changeVolume()"  min="0" max="100" value="60" ng-model-options="{debounce:500}">
+<i class="icon ion-volume-high"></i>
+</div> -->

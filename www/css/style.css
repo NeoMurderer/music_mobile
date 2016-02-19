@@ -1,1 +1,12 @@
 /* Empty. Add your own CSS if you like */
+.full-width {
+  width:100%;
+}
+.player-footer {
+  width:100%;
+  padding:0;
+  height: 72px;
+}
+.player-background {
+  background-size: cover;
+}

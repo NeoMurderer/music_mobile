@@ -1,5 +1,46 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="Playlist" hide-back-button='true' on-swipe-left="toggleMenu()">
+
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-android-menu" ng-click="toggleMenu()"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+      <button class="button button-icon button-clear ion-android-search" ng-click="toggleSearch()"></button>
+    </ion-nav-buttons>
   <ion-content>
-    <h1>Playlist</h1>
+    <div class="list">
+      <label class="item item-input  playlist-search" ng-show="showSearch">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="text" placeholder="Search" ng-model="trackTitle" ng-change='loadTracks()' ng-model-options='{ debounce: 500 }'>
+        </label>
+        <button class="button button-stable">
+          Clear
+        </button>
+      </label>
+      <a class="item item-button-left" ng-click="send('play')">
+        <button class="button ">
+          <i class="icon ion-play"></i>
+        </button>
+        Back off, man. I'm a scientist
+
+        <span class="item-note">
+          03:30
+        </span>
+      </a>
+    </div>
   </ion-content>
+  <div class="bar bar-footer player-footer" on-swipe-up="modal.show()">
+    <div class="list full-width">
+      <div class="item item-avatar item-icon-right" href="#">
+        <img src="http://api.redpanda.cloudit-dev.com//uploads/tracks/2G/img.jpg" alt="" ng-click="modal.show()" />
+        <h2 ng-click="modal.show()">Venkman</h2>
+        <p ng-click="modal.show()">Back off, man. I'm a scientist.</p>
+        <div class="buttons">
+          <button class="button icon ion-play" ng-click="send('play')"></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </ion-view>
