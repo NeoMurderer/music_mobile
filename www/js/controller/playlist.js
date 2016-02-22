@@ -1,5 +1,5 @@
 angular.module('starter')
-  .controller('PlaylistCtrl', function($scope, $ionicModal,$ionicSideMenuDelegate,Tracks) {
+  .controller('PlaylistCtrl', function($scope, $ionicModal,$ionicSideMenuDelegate,Tracks,$ionicLoading) {
     $ionicModal.fromTemplateUrl('templates/player.html', function($ionicModal) {
       $scope.modal = $ionicModal;
     }, {
@@ -13,9 +13,17 @@ angular.module('starter')
     $scope.toggleMenu = function () {
       $ionicSideMenuDelegate.toggleLeft();
     }
+    $scope.findTrack = function () {
+      console.log("search");
+    }
     $scope.loadTracks = function () {
-      Tracks.query({'title':$scope.trackTitle}).$promise.then(function (tracks) {
+      $ionicLoading.show();
+      var tracks = new Tracks();
+      tracks.$query($scope.search).then(function (tracks) {
         $scope.tracks = tracks
+        $ionicLoading.hide();
+      },function (error) {
+        $ionicLoading.hide();
       })
     }()
 

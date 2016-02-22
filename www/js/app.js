@@ -55,4 +55,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule','ngResource'])
       }
     })
   $urlRouterProvider.otherwise('/app/playlist');
+})
+.constant('$ionicLoadingConfig', {
+  template: '<ion-spinner icon="android"></ion-spinner>'
 });
