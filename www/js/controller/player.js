@@ -2,10 +2,8 @@
 angular.module('starter')
 .controller('PlayerCtrl', function($scope,$http,localStorageService,$ionicModal) {
   $scope.send = function (event) {
-    var user_session = localStorageService.get("loginData")
-    $http.post('http://'+user_session.ip+'/fire',
+    $http.post('http://localhost:3000/fire',
     {
-      user_session:user_session,
       user_action:event
     })
   }
@@ -13,7 +11,7 @@ angular.module('starter')
     var user_session = localStorageService.get("loginData")
     console.log(user_session);
     $http({
-      url:'http://'+user_session.ip+'/get_state',
+      url:'http://localhost:3000/get_state',
       method: "POST",
       data: {  user_session:user_session}
    });
@@ -22,12 +20,8 @@ angular.module('starter')
   $scope.changeVolume = function () {
     var volume = this.volume
     var user_session = localStorageService.get("loginData")
-    $http.post('http://'+user_session.ip+'/fire',
+    $http.post('http://localhost:3000/fire',
     {
-      user_session:{
-        email:"test@local.host",
-        password:"test"
-      },
       user_action:'adjustVolumeSlider',
       user_data:volume
     })
