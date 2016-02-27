@@ -22,11 +22,12 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'ngResource', 'satelli
     $authProvider.authHeader = 'Authorization'
     $authProvider.authToken = 'Bearer'
     $authProvider.storageType = 'localStorage'
+    $authProvider.cordova = true;
     $authProvider.oauth2({
       name: 'vkontakte',
       url: '/session',
       clientId: '5303112',
-      redirectUri: 'http://music.local:8100',
+      redirectUri: 'http://localhost/',
       authorizationEndpoint: 'https://oauth.vk.com/authorize',
       requiredUrlParams: ['display', 'scope'],
       scope: ['audio', 'friends', 'offline'],
